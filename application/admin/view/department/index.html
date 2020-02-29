@@ -1,0 +1,92 @@
+{include file="public/header" /}
+<!-- 中部开始 -->
+<div class="wrapper">
+    {include file="public/left" /}
+    <!-- 右侧主体开始 -->
+    <div class="page-content">
+        <div class="content">
+            <!-- 右侧内容框架，更改从这里开始 -->
+            <blockquote class="layui-elem-quote">
+                模块说明：该模块用于新增机构内部的部门。
+                
+                
+            </blockquote>
+
+
+            <fieldset class="layui-elem-field layui-field-title site-title">
+                <legend><a name="default"> 正在紧张开发中......</a></legend>
+            </fieldset>
+           
+            <!-- 右侧内容框架，更改从这里结束 -->
+            <xblock>
+               <button class="layui-btn" onclick="member_add('添加部门','/admin/department/add.html','600','500')"><i class="layui-icon">&#xe608;</i>添加部门</button>
+               <button class="layui-btn" onclick="javascript:location.reload()"><i class="layui-icon">&#xe6aa;</i>刷新</button>
+            </xblock>
+            <table class="layui-table">
+                <thead>
+                <tr>
+                    <th>
+                        序号
+                    </th>
+                    <th>
+                        部门名称
+                    </th>
+                    <th>
+                        操作
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                {volist name="$dep_list" id="vo" key="k"}
+                <tr>
+                    <td>{$k}</td>
+                    <td>{$vo.dep_name}</td>
+           
+                    <td class="td-manage"> 
+                         
+                  </td>
+                </tr>
+                {/volist}
+                </tbody>
+            </table>
+            
+               
+
+            <!-- 右侧内容框架，更改从这里结束 -->
+        </div>
+    </div>
+    <!-- 右侧主体结束 -->
+</div>
+<!-- 中部结束 -->
+<script>
+    /*用户-添加*/
+    function member_add(title,url,w,h){
+        x_admin_show(title,url,w,h);
+    }
+    /*用户-查看*/
+    function member_show(title,url,id,w,h){
+        x_admin_show(title,url,w,h);
+    }
+
+
+    // 用户-编辑
+    function member_edit (title,url,id,w,h) {
+        x_admin_show(title,url,w,h);
+    }
+
+    /*用户-删除*/
+    function member_del(obj,url){
+        layer.confirm('确认要删除吗？',function(index){
+            //发异步删除数据
+            
+            layer.msg('正在删除!',{icon:1,time:1000});
+            console.log('/admin/whitelist/index/del/'+url)
+            window.location.href = '/admin/whitelist/index/del/'+url;    
+        });
+    }
+
+</script>
+
+{include file="public/footer" /}
+
+

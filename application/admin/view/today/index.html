@@ -1,0 +1,66 @@
+{include file="public/header" /}
+<!-- 中部开始 -->
+<div class="wrapper">
+    {include file="public/left" /}
+    <!-- 右侧主体开始 -->
+    <div class="page-content">
+        <div class="content">
+            <!-- 右侧内容框架，更改从这里开始 -->
+            
+            <fieldset class="layui-elem-field layui-field-title site-title">
+                <legend><a name="default"> {$msg}总数({$count}人)</a></legend>
+            </fieldset>
+
+            <table class="layui-table">
+                <thead>
+                <tr>
+
+                    <th>
+                        序号
+                    </th>
+                    <th>
+                        个人标识
+                    </th>
+                    <th>
+                        姓名
+                    </th>
+                    <th >
+                        性别
+                    </th>
+                    
+                    <th >
+                        部门名称
+                    </th>
+                 
+                 
+                    <th >
+                        最后上报日期
+                    </th>
+      
+                </tr>
+                </thead>
+                <tbody>
+                {volist name="$userlist" id="vo" key="k"}
+                <tr>
+                    <td>{$k}</td>
+                    <td>{$vo.userID}</td>
+                    <td>{$vo.name}</td>
+                    <td>{$vo.gender}</td>
+                    <td>{$vo.dep_name}</td>
+                    <td>{$vo.report_date}</td>
+                </tr>
+                {/volist}
+
+                </tbody>
+            </table>
+
+            <!-- 右侧内容框架，更改从这里结束 -->
+        </div>
+    </div>
+    <!-- 右侧主体结束 -->
+</div>
+<!-- 中部结束 -->
+
+{include file="public/footer" /}
+
+

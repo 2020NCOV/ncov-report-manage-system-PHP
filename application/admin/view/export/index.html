@@ -1,0 +1,55 @@
+{include file="public/header" /}
+<!-- 中部开始 -->
+<div class="wrapper">
+    {include file="public/left" /}
+    <!-- 右侧主体开始 -->
+    <div class="page-content">
+        <div class="content">
+            <!-- 右侧内容框架，更改从这里开始 -->
+
+            <fieldset class="layui-elem-field layui-field-title site-title">
+                <legend><a name="default">下载最新数据</a></legend>
+            </fieldset>
+            <a style="text-decoration:none"  href="{:url('export/allStudent')}"  target = "_blank">{$a_msg}</a>
+            <table class="layui-table">
+                <thead>
+                <tr>
+                    <th>
+                        序号
+                    </th>
+                    <th>
+                        部门名称
+                    </th>
+                    
+                    
+                    <th>
+                        操作
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                {volist name="$dep_list" id="vo" key="k"}
+                <tr>
+                    <td>{$k}</td>
+                    <td>{$vo.dep_name}</td>
+                    
+                    <td class="td-manage">
+                            <a title="下载" href="/admin/export/mystudent/id/{$vo.id}"  target = "_blank" style="text-decoration:none">
+                                <i class="layui-icon"></i>下载本部门全部数据
+                            </a>
+
+                    </td>
+                </tr>
+                {/volist}
+                </tbody>
+            </table>
+            <!-- 右侧内容框架，更改从这里结束 -->
+        </div>
+    </div>
+    <!-- 右侧主体结束 -->
+</div>
+<!-- 中部结束 -->
+
+{include file="public/footer" /}
+
+

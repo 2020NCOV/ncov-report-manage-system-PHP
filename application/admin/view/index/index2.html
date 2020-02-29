@@ -1,0 +1,70 @@
+{include file="public/header" /}
+<!-- 中部开始 -->
+<div class="wrapper">
+    {include file="public/left" /}
+    <!-- 右侧主体开始 -->
+    <div class="page-content">
+        <div class="content">
+            <!-- 右侧内容框架，更改从这里开始 -->
+            <blockquote class="layui-elem-quote">
+                欢迎使用疫情防控系统！<span class="f-14">v1.0</span>
+            </blockquote>
+
+            <fieldset class="layui-elem-field layui-field-title site-title">
+                <legend><a name="default">所有学生({$type_count_num3}人)整体分布情况</a></legend>
+            </fieldset>
+            <table class="layui-table">
+                <thead>
+                <tr >
+                    <th colspan="4" >当前在北京</th>
+                    <th colspan="3" >当前在外省市</th>
+                    <th colspan="2" >当前在大陆以外地区</th>
+                </tr>
+                </thead>
+                <tr>
+                  
+                    <td>北京生源地,大陆生数(含留校)</td>
+                    <td>北京生源地,港澳台生数(含留校)</td>
+              
+                    <td>非北京生源地,大陆生数(含留校)</td>
+                    <td>非北京生源地,港澳台生(含留校)</td>
+                    
+                    <td>在湖北地区(大陆生)人数</td>
+                    <td>湖北地区外省份(大陆生)人数</td>
+                    <td>湖北地区外省份(港澳台生等)人数</td>
+                    <td>中国大陆学生在大陆外地区总人数</td>
+                    <td>港澳台学生在大陆外地区总人数</td>
+                </tr>
+                <tr>
+ 
+                    <td bgcolor="#a00000">{$bj_home_type1_count_num3}人</td>
+                    <td bgcolor="#a00000">{$bj_home_type2_count_num3}人</td>
+ 
+                    <td bgcolor="#a00000">{$unbj_home_type1_count_num3}人</td>
+                    <td bgcolor="#a00000">{$unbj_home_type2_count_num3}人</td>
+                   
+                    <td>{$hubei_cur_count_num3}人</td>
+                    <td>{$un_hubei_cur_count_num3}人</td>
+                    <td>{$un_hubei_outsea_cur_count_num3}人</td>
+                    <td>{$out_sea_dalu_count_num3}人</td>
+                    <td>{$out_sea_gat_count_num3}人</td>
+                </tr>
+                <thead>
+                <tr>
+                    <td colspan="4">在京合计: {$bj_count_num3}人</td>
+                    <td colspan="3">在外省合计:{$unbj_count_num3}人</td>
+                    <td colspan="2">在大陆外合计:{$out_sea_count_num3}人</td>
+                </tr>
+                </thead>
+            </table>
+
+ 
+            
+            <!-- 右侧内容框架，更改从这里结束 -->
+        </div>
+    </div>
+    <!-- 右侧主体结束 -->
+</div>
+<!-- 中部结束 -->
+
+{include file="public/footer" /}

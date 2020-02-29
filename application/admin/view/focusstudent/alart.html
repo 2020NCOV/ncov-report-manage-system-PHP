@@ -1,0 +1,87 @@
+{include file="public/header" /}
+<!-- 中部开始 -->
+<div class="wrapper">
+    {include file="public/left" /}
+    <!-- 右侧主体开始 -->
+    <div class="page-content">
+        <div class="content">
+            <!-- 右侧内容框架，更改从这里开始 -->
+            <blockquote class="layui-elem-quote">
+                欢迎使用疫情防控系统！<span class="f-14">v1.0</span>
+            </blockquote>
+            <fieldset class="layui-elem-field layui-field-title site-title">
+                <legend><a name="default"> {$msg}学生总数({$stucount}人)</a></legend>
+            </fieldset>
+
+            <table class="layui-table">
+                <thead>
+                <tr>
+
+                    <th style="width: 30px;">
+                        序号
+                    </th>
+                    <th style="width: 70px;">
+                        学号
+                    </th>
+                    <th  style="width: 50px;">
+                        姓名
+                    </th>
+                 
+                    
+                    <th  style="width: 30px;">
+                        当前所在地
+                    </th>
+                    <th style="width: 100px;" >
+                        14天状况
+                    </th>
+                    <th   style="width: 20px;">
+                        有无发热等症状
+                    </th>
+                 	 <th  style="width: 30px;">
+                        当前健康状况
+                    </th>
+                    <th  style="width: 55px;">
+                        最后上报日期
+                    </th>
+                    <th  style="width: 30px;">
+                        当前状态
+                    </th>
+                    <th style="width: 100px;" >
+                        备注
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                {volist name="$stulist" id="vo" key="k"}
+                <tr>
+                    <td>{$k}</td>
+                    <td>{$vo.stuID}</td>
+                    <td>{$vo.name}</td>
+  
+                    
+                    
+                    <td>{$vo.cur_place}</td>
+                    <td>{$vo.radio_touch_14_str}</td>
+                    <td>{$vo.status_str}</td>
+                    <td>{$vo.health_srt}</td>
+                    <td>{$vo.reportdate}</td>
+                    <td> <span class="layui-btn layui-btn-danger layui-btn-mini">
+                                {$vo.is_school_str}
+                    </span></td>
+                    <td>{$vo.remark}</td>
+                </tr>
+                {/volist}
+
+                </tbody>
+            </table>
+
+            <!-- 右侧内容框架，更改从这里结束 -->
+        </div>
+    </div>
+    <!-- 右侧主体结束 -->
+</div>
+<!-- 中部结束 -->
+
+{include file="public/footer" /}
+
+

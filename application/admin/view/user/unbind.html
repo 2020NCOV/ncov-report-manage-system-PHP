@@ -1,0 +1,119 @@
+{include file="public/header" /}
+<!-- 中部开始 -->
+<div class="wrapper">
+    {include file="public/left" /}
+    <!-- 右侧主体开始 -->
+    <div class="page-content">
+        <div class="content">
+            <!-- 右侧内容框架，更改从这里开始 -->
+            <blockquote class="layui-elem-quote">
+                模块说明：查询标识码绑定信息。也可以解绑机构内账号。
+                <br>
+            </blockquote>
+
+           <blockquote class="layui-elem-quote">
+                {$msg}
+            </blockquote>
+
+            <fieldset class="layui-elem-field layui-field-title site-title">
+                
+            </fieldset>
+           
+            <form class="layui-form xbs" method="post" action="{:url('admin/user/unbind')}" >
+                <div class="layui-form-pane" style="text-align: center;">
+                    <div class="layui-form-item" style="display: inline-block;">
+                        <div class="layui-input-inline">
+                            <input type="text" name="userid"  placeholder="请输入用户标识" autocomplete="off" class="layui-input">
+                        </div>
+                        <div class="layui-input-inline" style="width:80px">
+                            <button class="layui-btn"  lay-submit="" lay-filter="sreach"><i class="layui-icon">&#xe615;</i></button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+           
+            <table class="layui-table">
+                <thead>
+                <tr>
+                    
+                    <th>
+                        用户标识
+                    </th>
+                    <th>
+                        确认绑定标识
+                    </th>
+                    <th>
+                        当前绑定人姓名
+                    </th>
+                  
+                    <th>
+                        当前绑定人手机号
+                    </th>
+                    
+                    <th>
+                        绑定时间
+                    </th>
+                    
+                    <th>
+                        操作
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                {volist name="$user_list" id="vo" key="k"}
+                <tr>
+                    <td>{$vo.username} </td>
+                    <td>{$vo.userID} </td>
+                    <td>{$vo.name} </td>
+                    <td>{$vo.phone_num} </td>
+                    <td>{$vo.bind_date} </td> 
+                    <td class="td-manage">  
+                         
+                         
+                          <a title="解绑" href="/admin/user/unbind/unbind_username/{$vo.userID}" style="text-decoration:none">
+                                <i class="layui-icon">&#xe6f7;</i>解除绑定</a>
+                    </td>
+                </tr>
+                {/volist}
+                </tbody>
+            </table>
+
+
+            <!-- 右侧内容框架，更改从这里结束 -->
+        </div>
+    </div>
+    <!-- 右侧主体结束 -->
+</div>
+<!-- 中部结束 -->
+<script>
+    /*用户-添加*/
+    function member_add(title,url,w,h){
+        x_admin_show(title,url,w,h);
+    }
+    /*用户-查看*/
+    function member_show(title,url,id,w,h){
+        x_admin_show(title,url,w,h);
+    }
+
+
+    // 用户-编辑
+    function member_edit (title,url,id,w,h) {
+        x_admin_show(title,url,w,h);
+    }
+
+    /*用户-删除*/
+    function member_del(obj,url){
+        layer.confirm('确认要删除吗？',function(index){
+            //发异步删除数据
+            
+            layer.msg('正在删除!',{icon:1,time:1000});
+            console.log('/admin/whitelist/index/del/'+url)
+            window.location.href = '/admin/whitelist/index/del/'+url;    
+        });
+    }
+
+</script>
+
+{include file="public/footer" /}
+
+
