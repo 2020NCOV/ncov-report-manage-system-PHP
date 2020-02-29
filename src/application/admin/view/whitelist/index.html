@@ -1,0 +1,145 @@
+{include file="public/header" /}
+<!-- 中部开始 -->
+<div class="wrapper">
+    {include file="public/left" /}
+    <!-- 右侧主体开始 -->
+    <div class="page-content">
+        <div class="content">
+            <!-- 右侧内容框架，更改从这里开始 -->
+            <blockquote class="layui-elem-quote">
+                白名单作用：只有在白名单中的人员填报上来的数据，才被纳入数据统计范围。
+                <br>
+                可见范围：校级可以看到白名单中全校学生数据，学院可以看到白名单中本学院数据。
+                <br>
+                导入方式：通过Excel表格方式导入，包含四项数据：用户唯一标识（学号）、姓名、性别(男、女)、部门（院系）
+                <br>
+                导入权限：校级可以批量导入数据，院系也可以导入数据（权限范围仅限本院系）
+                <br>
+                重复导入：用户标识(学号/职工号)为唯一的标识，新的数据将覆盖原有数据
+            </blockquote>
+
+
+            <form class="layui-form xbs" method="post" action="" >
+                <div class="layui-form-pane" style="text-align: center;">
+                    <div class="layui-form-item" style="display: inline-block;">
+                        <div class="layui-input-inline">
+                            <input type="text" name="userid"  placeholder="请输入用户标识" autocomplete="off" class="layui-input">
+                        </div>
+                        <div class="layui-input-inline">
+                            <input type="text" name="name"  placeholder="请输入姓名" autocomplete="off" class="layui-input">
+                        </div>
+                        <div class="layui-input-inline">
+                            <select name="department">
+                                <option value ='0'>请选择部门</option>
+                                {volist name="$dep_list" id="vo" key="k"}
+                                <option value = '{$vo.id}'>{$vo.dep_name}</option>
+                                {/volist}
+                            </select>
+                        </div>
+                        <div class="layui-input-inline" style="width:80px">
+                            <button class="layui-btn"  lay-submit="" lay-filter="sreach"><i class="layui-icon">&#xe615;</i></button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <fieldset class="layui-elem-field layui-field-title site-title">
+                <legend><a name="default"> 查询结果总数：{$usr_count}人</a></legend>
+            </fieldset>
+            <xblock><button class="layui-btn layui-btn-danger" onclick="member_add('批量导入用户','/admin/whitelist/memberimport.html','600','500')"><i class="layui-icon">&#xe601;</i>批量导入</button><button class="layui-btn" onclick="member_add('添加用户','/admin/whitelist/memberadd.html','600','500')"><i class="layui-icon">&#xe608;</i>单个添加</button><span class="x-right" style="line-height:40px">仅显示前200条数据</span></xblock>
+            <table class="layui-table">
+                <thead>
+                <tr>
+                    <th>
+                        序号
+                    </th>
+                    <th>
+                        用户标识
+                    </th>
+                    <th>
+                        姓名
+                    </th>
+                    <th>
+                        性别
+                    </th>
+                    <th>
+                        部门名称
+                    </th>
+                    <th>
+                        添加时间
+                    </th>
+                    <th>
+                        更新时间
+                    </th>
+                    <th>
+                        备注
+                    </th>
+                    <th>
+                        操作
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                {volist name="$white_list" id="vo" key="k"}
+                <tr>
+                    <td>{$k}</td>
+                    <td>{$vo.userID}</td>
+                    <td>{$vo.name}</td>
+                    <td>{$vo.gender}</td>
+                    <td>{$vo.dep_name}</td>
+                    <td>{$vo.add_datetime}</td>
+                    <td>{$vo.last_update_time}</td>
+                    <td>{$vo.add_remark}</td>
+                    <td class="td-manage">
+
+                      
+                      <a title="删除" href="javascript:;" onclick="member_del(this,'{$vo.userID}')" 
+                            style="text-decoration:none">
+                                <i class="layui-icon">&#xe640;</i>
+                      </a>
+
+                    </td>
+                </tr>
+                {/volist}
+                </tbody>
+            </table>
+            <!-- 右侧内容框架，更改从这里结束 -->
+
+
+            <!-- 右侧内容框架，更改从这里结束 -->
+        </div>
+    </div>
+    <!-- 右侧主体结束 -->
+</div>
+<!-- 中部结束 -->
+<script>
+    /*用户-添加*/
+    function member_add(title,url,w,h){
+        x_admin_show(title,url,w,h);
+    }
+    /*用户-查看*/
+    function member_show(title,url,id,w,h){
+        x_admin_show(title,url,w,h);
+    }
+
+
+    // 用户-编辑
+    function member_edit (title,url,id,w,h) {
+        x_admin_show(title,url,w,h);
+    }
+
+    /*用户-删除*/
+    function member_del(obj,url){
+        layer.confirm('确认要删除吗？',function(index){
+            //发异步删除数据
+            
+            layer.msg('正在删除!',{icon:1,time:1000});
+            console.log('/admin/whitelist/index/del/'+url)
+            window.location.href = '/admin/whitelist/index/del/'+url;    
+        });
+    }
+
+</script>
+
+{include file="public/footer" /}
+
+

@@ -1,0 +1,49 @@
+{include file="public/header_blank" /}
+<!-- 中部开始 -->
+<div class="wrapper">
+    
+    <!-- 右侧主体开始 -->
+    <div class="page-content">
+        <div class="content">
+            {$msg}
+          <br><br><a href="/uploads/白名单数据导入摸板.xlsx">模板文件下载</a><br>
+            <form class="layui-form" method="post" enctype="multipart/form-data">
+                <input type="hidden"   name="add" value="1">
+                <div class="layui-form-item">
+                    <label for="userid" class="layui-form-label">
+                        <span class="x-red"></span>
+                    </label>
+                    <div class="layui-input-inline">
+                        <input type="file" name="dao" multiple="multiple" style="width: 200px;">
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">
+                        <span class="x-red"></span>
+                    </div>
+                </div>
+              
+                
+               
+                <div class="layui-form-item">
+                    <label for="L_repass" class="layui-form-label">
+                    </label>
+                    <button  class="layui-btn" lay-filter="add" lay-submit="">
+                        导入
+                    </button>
+                </div>
+            </form>
+          
+          
+          
+        </div>
+    </div>
+    <!-- 右侧主体结束 -->
+</div>
+<!-- 中部结束 -->
+<script>
+
+        
+ </script>
+
+{include file="public/footer" /}
+
+

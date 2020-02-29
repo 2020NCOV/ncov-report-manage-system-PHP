@@ -1,0 +1,129 @@
+{include file="public/header" /}
+<!-- 中部开始 -->
+<div class="wrapper">
+    {include file="public/left" /}
+    <!-- 右侧主体开始 -->
+    <div class="page-content">
+        <div class="content">
+            <!-- 右侧内容框架，更改从这里开始 -->
+            <blockquote class="layui-elem-quote">
+                 开发中......
+              <br>
+                设置原则：一个部门可以设置多个管理员，一个管理员仅可以管理一个部门。
+                <br>
+                部门管理员权限：维护部门白名单、下载部门每日数据报表
+                <br>
+                部门管理员账户：务必使用手机号作为用户名，首次登录需要修改密码
+            
+            </blockquote>
+
+
+            <form class="layui-form xbs" method="post" action="" >
+                <div class="layui-form-pane" style="text-align: center;">
+                    <div class="layui-form-item" style="display: inline-block;">
+                        <div class="layui-input-inline">
+                            <input type="text" name="username"  placeholder="请输入用户名" autocomplete="off" class="layui-input">
+                        </div>
+                        <div class="layui-input-inline">
+                            <input type="text" name="name"  placeholder="请输入姓名" autocomplete="off" class="layui-input">
+                        </div>
+                        <div class="layui-input-inline">
+                            <select name="department">
+                                <option value ='0'>请选择部门</option>
+                                {volist name="$dep_list" id="vo" key="k"}
+                                <option value = '{$vo.id}'>{$vo.dep_name}</option>
+                                {/volist}
+                            </select>
+                        </div>
+                        <div class="layui-input-inline" style="width:80px">
+                            <button class="layui-btn"  lay-submit="" lay-filter="sreach"><i class="layui-icon">&#xe615;</i></button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <fieldset class="layui-elem-field layui-field-title site-title">
+                <legend><a name="default"> 查询结果总数：{$usr_count}人</a></legend>
+            </fieldset>
+            <table class="layui-table">
+                <thead>
+                <tr>
+                    <th>
+                        序号
+                    </th>
+                    <th>
+                        用户名
+                    </th>
+                    <th>
+                        姓名
+                    </th>
+                    <th>
+                        部门名称
+                    </th>
+                    <th>
+                        角色名称
+                    </th>
+                    
+                    <th>
+                        操作
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                {volist name="$admin_list" id="vo" key="k"}
+                <tr>
+                    <td>{$k}</td>
+                    <td>{$vo.username}</td>
+                    <td>{$vo.name}</td>
+                    <td>{$vo.dep_name}</td>
+                    <td>{$vo.role_name}</td>
+                    <td class="td-manage">
+
+                      
+                     
+
+                    </td>
+                </tr>
+                {/volist}
+                </tbody>
+            </table>
+            <!-- 右侧内容框架，更改从这里结束 -->
+
+
+            <!-- 右侧内容框架，更改从这里结束 -->
+        </div>
+    </div>
+    <!-- 右侧主体结束 -->
+</div>
+<!-- 中部结束 -->
+<script>
+    /*用户-添加*/
+    function member_add(title,url,w,h){
+        x_admin_show(title,url,w,h);
+    }
+    /*用户-查看*/
+    function member_show(title,url,id,w,h){
+        x_admin_show(title,url,w,h);
+    }
+
+
+    // 用户-编辑
+    function member_edit (title,url,id,w,h) {
+        x_admin_show(title,url,w,h);
+    }
+
+    /*用户-删除*/
+    function member_del(obj,url){
+        layer.confirm('确认要删除吗？',function(index){
+            //发异步删除数据
+            
+            layer.msg('正在删除!',{icon:1,time:1000});
+            console.log('/admin/whitelist/index/del/'+url)
+            window.location.href = '/admin/whitelist/index/del/'+url;    
+        });
+    }
+
+</script>
+
+{include file="public/footer" /}
+
+
