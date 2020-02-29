@@ -60,24 +60,19 @@ class Export extends Base
           
             //获取该企业使用的表单表名称
             $org_table =  Db::table('organization')
-                ->alias("o") //取一个别名
-                ->join('report_template t', 'o.template_code = t.code','LEFT')
-                ->where('o.id','=',$org_id)
+                ->where('id','=',$org_id)
                 ->find();
               
             $org_table_name = '';
             if(count($org_table)>0){
-                $org_table_name = $org_table['table_name'];
+                $org_table_name = "report_record_".$org_table['template_code'];
                 $org_template_code = $org_table['template_code'];
             }else{
               $this->error("获取表单模板数据错误");
             }
           
             
-            //echo $org_table_name;
-            //echo $org_template_code;
-          
-          
+
            
 
             $service = new \app\admin\service\Log();
@@ -97,7 +92,7 @@ class Export extends Base
             $objWriter = \PHPExcel_IOFactory::createWriter($objExcel, 'Excel2007');
             $objActSheet = $objExcel->getActiveSheet();
             $key = ord("A");
-            if($org_template_code == "company"){
+            if($org_template_code == "company_df"){
                   $dep_id = Request::instance()->param('id');
                     //如果是部门管理员，则dep_id 必须为本部门的dep_id
                   
@@ -297,7 +292,7 @@ class Export extends Base
         	}
           
           
-            if($org_template_code == "default"){
+            if($org_template_code == "school_df"){
                   $dep_id = Request::instance()->param('id');
                     //如果是部门管理员，则dep_id 必须为本部门的dep_id
                   
@@ -535,24 +530,16 @@ class Export extends Base
           
             //获取该企业使用的表单表名称
             $org_table =  Db::table('organization')
-                ->alias("o") //取一个别名
-                ->join('report_template t', 'o.template_code = t.code','LEFT')
-                ->where('o.id','=',$org_id)
+                ->where('id','=',$org_id)
                 ->find();
               
             $org_table_name = '';
             if(count($org_table)>0){
-                $org_table_name = $org_table['table_name'];
+                $org_table_name = "report_record_".$org_table['template_code'];
                 $org_template_code = $org_table['template_code'];
             }else{
               $this->error("获取表单模板数据错误");
             }
-          
-            
-            //echo $org_table_name;
-            //echo $org_template_code;
-          
-          
            
 
             $service = new \app\admin\service\Log();
@@ -572,7 +559,7 @@ class Export extends Base
             $objWriter = \PHPExcel_IOFactory::createWriter($objExcel, 'Excel2007');
             $objActSheet = $objExcel->getActiveSheet();
             $key = ord("A");
-            if($org_template_code == "company"){
+            if($org_template_code == "company_df"){
                   $dep_id = Request::instance()->param('id');
                     //如果是部门管理员，则dep_id 必须为本部门的dep_id
                   
@@ -772,7 +759,7 @@ class Export extends Base
         	}
           
           
-            if($org_template_code == "default"){
+            if($org_template_code == "default_df"){
                   $dep_id = Request::instance()->param('id');
                     //如果是部门管理员，则dep_id 必须为本部门的dep_id
                   
@@ -1000,7 +987,7 @@ class Export extends Base
   
   	public function get_district_path($city_code){
         $pathstr= '';
-     	$data = Db::table('er_com_district')
+     	$data = Db::table('com_district')
           ->where('value','=',$city_code)
           ->select();
         if(count($data)>0){
@@ -1008,7 +995,7 @@ class Export extends Base
             	$pathstr = $data[0]['name'];
             }else{
             	$pathstr = $data[0]['name'];
-                $data = Db::table('er_com_district')
+                $data = Db::table('com_district')
                         ->where('value','=',$data[0]['parent_id'])
                         ->select();
                 if(count($data)>0){

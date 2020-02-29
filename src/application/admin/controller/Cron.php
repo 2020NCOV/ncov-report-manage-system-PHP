@@ -18,26 +18,13 @@ class Cron extends Controller{
                  foreach ($res_org_list as $list) {
                     $org_id = $list['id'];  //机构id
                     $template_code = $list['template_code'];
-                    $template_table ="";
-                   
-                    $template= Db::table('report_template')
-                         ->where('code', '=', $template_code ) 
-                         ->find();
-                    if(count($template)>0){
-                         $template_table = $template['table_name'];
-                        // echo $template_table;
-                        // echo '-'.$list['template_code'];
-                       //  echo '-'.$list['corpname'];
-                        // echo '-'.$list['id'];
-                    }else
-                    {
-                      return;
-                    }
+                    $template_table = "report_record_".$template_code;
+                      
                    
                     
                     //遍历机构内所有用户的最新表单，并填充到白名单的report表的id字段
-                    $wx_bind_table = "er_wx_department_bind_user";
-                    $wx_user_table = "er_user_student_weixin";
+                    $wx_bind_table = "wx_mp_bind_info";
+                    $wx_user_table = "wx_mp_user";
                    
                     //$org_id 机构名称已赋值
                     $map_user['org_id']= $org_id;
@@ -51,7 +38,7 @@ class Cron extends Controller{
                             //echo $userID;
                             //寻找微信id
                             $map_wx_users['isbind']=1;
-                            $map_wx_users['dep_id']=$org_id;
+                            $map_wx_users['org_id']=$org_id;
                             $map_wx_users['username']=$userID;
                             $wx_users= Db::table($wx_bind_table)
                                      ->where($map_wx_users ) 
