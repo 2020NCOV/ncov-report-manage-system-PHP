@@ -1,0 +1,85 @@
+{include file="public/header" /}
+<!-- 中部开始 -->
+<div class="wrapper">
+    {include file="public/left" /}
+    <!-- 右侧主体开始 -->
+    <div class="page-content">
+        <div class="content">
+            {$msg}
+            <form class="layui-form" method="post"   >
+                <input type="hidden"   name="add" value="1">
+                <div class="layui-form-item">
+                    <label for="userid" class="layui-form-label">
+                        <span class="x-red">*</span>手机号
+                    </label>
+                    <div class="layui-input-inline">
+                        <input type="hidden" name="add" value='1'>
+                        <input type="text" id="userid" name="user_name" required="" lay-verify="nikename" autocomplete="off" class="layui-input">
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">
+                        <span class="x-red">作为管理员用户名</span>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label for="name" class="layui-form-label">
+                        <span class="x-red">*</span>姓名
+                    </label>
+                    <div class="layui-input-inline">
+                        <input type="text" id="name" name="name" required="" lay-verify="nikename"
+                               autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label for="passwd" class="layui-form-label">
+                        <span class="x-red">*</span>密码
+                    </label>
+                    <div class="layui-input-inline">
+                        <input type="text" id="passwd" name="passwd" required="" lay-verify="nikename"
+                               autocomplete="off" class="layui-input">
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">
+                        <span class="x-red">字母数字组合,长度大于8位</span>
+                    </div>
+                </div>
+
+
+                <div class="layui-form-item">
+                    <label  class="layui-form-label">
+                        <span class="x-red">*</span>选择部门
+                    </label>
+
+                    <div class="layui-input-inline">
+                        <select name="department">
+                            <option value ='0'>请选择</option>
+                            {volist name="$dep_list" id="vo" key="k"}
+                            <option value = '{$vo.id}'>{$vo.dep_name}</option>
+                            {/volist}
+                        </select>
+
+                    </div>
+                </div>
+               
+                <div class="layui-form-item">
+                    <label for="L_repass" class="layui-form-label">
+                    </label>
+                    <button  id="L_repass" class="layui-btn" lay-filter="add" lay-submit="">
+                        增加
+                    </button>
+                </div>
+            </form>
+          
+          
+          
+        </div>
+    </div>
+    <!-- 右侧主体结束 -->
+</div>
+<!-- 中部结束 -->
+<script>
+
+        
+ </script>
+
+{include file="public/footer" /}
+
+

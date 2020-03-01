@@ -7,9 +7,9 @@
         <div class="content">
             <!-- 右侧内容框架，更改从这里开始 -->
             <blockquote class="layui-elem-quote">
-                模块说明：该模块用于新增机构内部的部门。
-                <br>
-                使用注意：只能修改名称,不能删除。
+                标签（tag）说明：每一个成员可以被设置不同的标签（tag）<br>
+                标签管理：为了防止标签混乱，标签统一由部门管理员来创建 <br>
+                标签所属成员：由标签管理员通过Excel批量设置（仅能添加本部门成员） <br>
                 
                 
             </blockquote>
@@ -21,8 +21,8 @@
            
             <!-- 右侧内容框架，更改从这里结束 -->
             <xblock>
-               <button class="layui-btn" onclick="member_add('添加部门','add.html','600','500')"><i class="layui-icon">&#xe608;</i>添加部门</button>
-
+               <button class="layui-btn" onclick="member_add('添加标签','add.html','600','500')"><i class="layui-icon">&#xe608;</i>添加标签</button>
+               <button class="layui-btn" onclick="javascript:location.reload()"><i class="layui-icon">&#xe6aa;</i>刷新</button>
             </xblock>
             <table class="layui-table">
                 <thead>
@@ -31,7 +31,10 @@
                         序号
                     </th>
                     <th>
-                        部门名称
+                        标签名称
+                    </th>
+                    <th>
+                        所属部门
                     </th>
                     <th>
                         操作
@@ -40,20 +43,16 @@
                 </tr>
                 </thead>
                 <tbody>
-                {volist name="$dep_list" id="vo" key="k"}
+                {volist name="$tag_list" id="vo" key="k"}
                 <tr>
                     <td>{$k}</td>
+                    <td>{$vo.name}</td>
                     <td>{$vo.dep_name}</td>
                     <td class="td-manage">
-
-
-                        <a title="修改" href="javascript:;" onclick="member_edit(this,'{$vo.id}')"
-                           style="text-decoration:none">
-                            <i class="layui-icon">&#xe631;</i>修改部门名称
+                        <a title="设置管理员" href="setadmin.html"  style="text-decoration:none">
+                            <i class="layui-icon">&#xe631;</i>设置管理员
                         </a>
-
-                    </td>
-
+                  </td>
                 </tr>
                 {/volist}
                 </tbody>
@@ -70,8 +69,7 @@
 <script>
     /*用户-添加*/
     function member_add(title,url,w,h){
-        //x_admin_show(title,url,w,h);
-        window.location.href = url;
+        x_admin_show(title,url,w,h);
     }
     /*用户-查看*/
     function member_show(title,url,id,w,h){
@@ -81,10 +79,19 @@
 
     // 用户-编辑
     function member_edit (title,url,id,w,h) {
-        window.location.href = 'edit/id/'+url;
+        x_admin_show(title,url,w,h);
     }
 
-
+    /*用户-删除*/
+    function member_del(obj,url){
+        layer.confirm('确认要删除吗？',function(index){
+            //发异步删除数据
+            
+            layer.msg('正在删除!',{icon:1,time:1000});
+            console.log('/admin/whitelist/index/del/'+url)
+            window.location.href = '/admin/whitelist/index/del/'+url;    
+        });
+    }
 
 </script>
 
