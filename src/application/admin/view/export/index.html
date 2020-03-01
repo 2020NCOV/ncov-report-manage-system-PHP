@@ -6,7 +6,15 @@
     <div class="page-content">
         <div class="content">
             <!-- 右侧内容框架，更改从这里开始 -->
+            <blockquote class="layui-elem-quote">
+                数据内容：数据为当前白名单中人员的最近一次上报数据。
+                <br>
+                可见范围：机构可以看到白名单中整个机构人员数据，部门可以看到白名单中本部门数据。
+                <br>
+                下载权限：仅机构管理员和部门管理员有下载权限。
+                <br>
 
+            </blockquote>
             <fieldset class="layui-elem-field layui-field-title site-title">
                 <legend><a name="default">下载最新数据</a></legend>
             </fieldset>
@@ -34,7 +42,7 @@
                     <td>{$vo.dep_name}</td>
                     
                     <td class="td-manage">
-                            <a title="下载" href="/admin/export/mystudent/id/{$vo.id}"  target = "_blank" style="text-decoration:none">
+                            <a title="下载" href="mystudent/id/{$vo.id}"  target = "_blank" style="text-decoration:none">
                                 <i class="layui-icon"></i>下载本部门全部数据
                             </a>
 

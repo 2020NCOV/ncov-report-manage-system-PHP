@@ -71,16 +71,7 @@ class Export extends Base
               $this->error("获取表单模板数据错误");
             }
           
-            
 
-           
-
-            $service = new \app\admin\service\Log();
-            $service->write("3","导出全部学生数据");
-            
-            //$time = time();
-            //echo $dep_id;
-          
          
             //这里引入PHPExcel文件注意路径修改
             vendor("PHPExcel");
@@ -497,6 +488,8 @@ class Export extends Base
            
         	}
 
+            $service = new \app\admin\service\Log();
+            $service->write("3","导出全机构数据");
 
             date_default_timezone_set('PRC');
             $today = date('yymd_His');
@@ -559,6 +552,8 @@ class Export extends Base
             $objWriter = \PHPExcel_IOFactory::createWriter($objExcel, 'Excel2007');
             $objActSheet = $objExcel->getActiveSheet();
             $key = ord("A");
+            //echo $org_template_code;
+            //return;
             if($org_template_code == "company_df"){
                   $dep_id = Request::instance()->param('id');
                     //如果是部门管理员，则dep_id 必须为本部门的dep_id
@@ -759,7 +754,7 @@ class Export extends Base
         	}
           
           
-            if($org_template_code == "default_df"){
+            if($org_template_code == "school_df"){
                   $dep_id = Request::instance()->param('id');
                     //如果是部门管理员，则dep_id 必须为本部门的dep_id
                   
@@ -964,6 +959,9 @@ class Export extends Base
            
         	}
 
+
+            $service = new \app\admin\service\Log();
+            $service->write("3","导出本部门数据");
 
             date_default_timezone_set('PRC');
             $today = date('yymd_His');

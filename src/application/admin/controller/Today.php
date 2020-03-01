@@ -16,7 +16,7 @@ class Today extends Base
       
       
        $org_id = Session::get('org_id'); //   机构id
-       if(1 ==Session::get('role') || 2 ==Session::get('role') || 3 ==Session::get('role')|| 4 ==Session::get('role')){
+       if( 2 ==Session::get('role') || 3 ==Session::get('role')){
 
            
            $msg = "今日未提交";
@@ -36,7 +36,7 @@ class Today extends Base
                ->where($where_str)
                ->order('userID')
                ->select();
-    
+          // echo  DB::getLastSQL();
            $count= count($UserData);
            $this->assign("count", $count);
            $this->assign("msg", $msg);

@@ -44,6 +44,9 @@
             <fieldset class="layui-elem-field layui-field-title site-title">
                 <legend><a name="default"> 查询结果总数：{$usr_count}人</a></legend>
             </fieldset>
+            <xblock>
+                <button class="layui-btn" onclick="member_add('添加管理员','add.html','600','500')"><i class="layui-icon">&#xe608;</i>添加管理员</button>
+            </xblock>
             <table class="layui-table">
                 <thead>
                 <tr>
@@ -62,10 +65,11 @@
                     <th>
                         角色名称
                     </th>
-                    
                     <th>
                         操作
                     </th>
+                    
+
                 </tr>
                 </thead>
                 <tbody>
@@ -78,10 +82,19 @@
                     <td>{$vo.role_name}</td>
                     <td class="td-manage">
 
-                      
-                     
+
+                        <a title="修改" href="javascript:;" onclick="member_edit(this,'{$vo.id}')"
+                           style="text-decoration:none">
+                            <i class="layui-icon">&#xe631;</i>修改
+                        </a>
+
+                        <a title="删除" href="javascript:;" onclick="member_del(this,'{$vo.id}')"
+                           style="text-decoration:none">
+                            <i class="layui-icon">&#xe640;</i>删除
+                        </a>
 
                     </td>
+
                 </tr>
                 {/volist}
                 </tbody>
@@ -98,7 +111,8 @@
 <script>
     /*用户-添加*/
     function member_add(title,url,w,h){
-        x_admin_show(title,url,w,h);
+       // x_admin_show(title,url,w,h);
+        window.location.href =  url;
     }
     /*用户-查看*/
     function member_show(title,url,id,w,h){
@@ -108,7 +122,8 @@
 
     // 用户-编辑
     function member_edit (title,url,id,w,h) {
-        x_admin_show(title,url,w,h);
+        //x_admin_show(title,url,w,h);
+        window.location.href =  'edit/id/'+url;
     }
 
     /*用户-删除*/
@@ -117,8 +132,7 @@
             //发异步删除数据
             
             layer.msg('正在删除!',{icon:1,time:1000});
-            console.log('/admin/whitelist/index/del/'+url)
-            window.location.href = '/admin/whitelist/index/del/'+url;    
+            window.location.href = 'del/id/'+url;
         });
     }
 

@@ -8,22 +8,21 @@
             <!-- 右侧内容框架，更改从这里开始 -->
             <blockquote class="layui-elem-quote">
                 标签（tag）说明：每一个成员可以被设置不同的标签（tag）<br>
-                标签管理：为了防止标签混乱，标签统一由部门管理员来创建 <br>
-                标签管理员：通常为辅导员、班主任、班长 <br>
-                标签所属成员：由标签管理员通过Excel批量设置（仅能添加本部门成员） <br>
-                
-                
+                全局标签：由机构管理员创建并分配权限,该标签可以给白名单内的所有人员打标签 <br>
+                部门标签：由部门管理员创建并分配权限,该标签只能给白名单内的所属部门人员打标签 <br>
+                标签管理员：通常为机构内的:跨部门的组长,项目组组长、学校辅导员、班主任、班长等<br>
+                标签的作用: 主要方便标签管理员查看填报信息,以便协助催促上报,可在手机端方便查看信息 <br>
+                标签内的成员名单管理：由部门管理员通过Excel批量设置 <br>
             </blockquote>
 
 
             <fieldset class="layui-elem-field layui-field-title site-title">
-                <legend><a name="default"> 正在紧张开发中......</a></legend>
+                <legend><a name="default"> </a></legend>
             </fieldset>
            
             <!-- 右侧内容框架，更改从这里结束 -->
             <xblock>
-               <button class="layui-btn" onclick="member_add('添加标签','/admin/tag/add.html','600','500')"><i class="layui-icon">&#xe608;</i>添加标签</button>
-               <button class="layui-btn" onclick="javascript:location.reload()"><i class="layui-icon">&#xe6aa;</i>刷新</button>
+               <button class="layui-btn" onclick="member_add('添加标签','add.html','600','500')"><i class="layui-icon">&#xe608;</i>添加标签</button>
             </xblock>
             <table class="layui-table">
                 <thead>
@@ -31,12 +30,19 @@
                     <th>
                         序号
                     </th>
+
                     <th>
                         标签名称
                     </th>
+
+                    <th>
+                        所属部门
+                    </th>
+
                     <th>
                         操作
                     </th>
+
                 </tr>
                 </thead>
                 <tbody>
@@ -44,9 +50,19 @@
                 <tr>
                     <td>{$k}</td>
                     <td>{$vo.name}</td>
-           
-                    <td class="td-manage"> 
-                         
+                    <td>{eq name="vo.dep_id" value=""}非部门标签{/eq} {neq name="vo.dep_id" value="0"}{$vo.dep_name}{/neq} </td>
+                    <td class="td-manage">
+                        <a title="修改标签名称" href="javascript:;" onclick="member_edit(this,'{$vo.id}')"   style="text-decoration:none">
+                            <i class="layui-icon">&#xe631;</i>修改标签名称
+                        </a>
+
+                        <a title="设置管理员" href="javascript:;" onclick="member_admin(this,'{$vo.id}')"  style="text-decoration:none">
+                            <i class="layui-icon">&#xe631;</i>设置标签管理员
+                        </a>
+
+                        <a title="导入标签内人员信息" href="javascript:;" onclick="member_import(this,'{$vo.id}')"   style="text-decoration:none">
+                            <i class="layui-icon">&#xe631;</i>导入标签内人员信息
+                        </a>
                   </td>
                 </tr>
                 {/volist}
@@ -64,17 +80,28 @@
 <script>
     /*用户-添加*/
     function member_add(title,url,w,h){
-        x_admin_show(title,url,w,h);
+       // x_admin_show(title,url,w,h);
+        window.location.href = url;
+    }
+    /*用户-添加*/
+    function member_admin(title,url,w,h){
+        // x_admin_show(title,url,w,h);
+        window.location.href = 'setadmin/id/'+url;
     }
     /*用户-查看*/
     function member_show(title,url,id,w,h){
         x_admin_show(title,url,w,h);
     }
 
+    /*用户-查看*/
+    function member_import(title,url,id,w,h){
+        window.location.href = 'import/id/'+url;
+    }
 
     // 用户-编辑
     function member_edit (title,url,id,w,h) {
-        x_admin_show(title,url,w,h);
+        //x_admin_show(title,url,w,h);
+        window.location.href = 'edit/id/'+url;
     }
 
     /*用户-删除*/
@@ -83,8 +110,7 @@
             //发异步删除数据
             
             layer.msg('正在删除!',{icon:1,time:1000});
-            console.log('/admin/whitelist/index/del/'+url)
-            window.location.href = '/admin/whitelist/index/del/'+url;    
+            window.location.href = '/del/id/'+url;
         });
     }
 

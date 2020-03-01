@@ -6,28 +6,38 @@
     <div class="page-content">
         <div class="content">
             {$msg}
-          <br><br><a href="/uploads/白名单数据导入摸板.xlsx">模板文件下载</a><br>
-            <form class="layui-form" method="post" enctype="multipart/form-data">
-                <input type="hidden"   name="add" value="1">
+            <form class="layui-form" method="post"   >
+                <input type="hidden"   name="edit" value="1">
+                <input type="hidden"   name="id" value="{$id}">
                 <div class="layui-form-item">
-                    <label for="userid" class="layui-form-label">
-                        <span class="x-red"></span>
+                    <label   class="layui-form-label">
+                        <span class="x-red">*</span>原名称
                     </label>
                     <div class="layui-input-inline">
-                        <input type="file" name="dao" multiple="multiple" style="width: 200px;">
+                        <input type="text"   value="{$name}" class="layui-input" readonly="readonly">
                     </div>
                     <div class="layui-form-mid layui-word-aux">
-                        <span class="x-red"></span>
+                        <span class="x-red"> </span>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label for="userid" class="layui-form-label">
+                        <span class="x-red">*</span>新名称
+                    </label>
+                    <div class="layui-input-inline">
+                        <input type="text" id="userid" name="dep_name" required="" lay-verify="nikename" autocomplete="off" class="layui-input">
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">
+                        <span class="x-red">不能少于2个字符</span>
                     </div>
                 </div>
               
-                
                
                 <div class="layui-form-item">
                     <label for="L_repass" class="layui-form-label">
                     </label>
                     <button  class="layui-btn" lay-filter="add" lay-submit="">
-                        导入
+                        修改
                     </button>
                 </div>
             </form>

@@ -28,6 +28,7 @@ class Login extends Controller{
         $md5password = md5($secure_code.md5($password));
         $map['username']=$username;
 		$map['password']=$md5password;
+        $map['is_del']=0;
         //使用数组方式，防止SQL注入漏洞
         $data = Db::table('admin_user')
           ->where($map)

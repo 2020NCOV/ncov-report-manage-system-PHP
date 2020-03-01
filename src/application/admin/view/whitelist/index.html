@@ -13,9 +13,9 @@
                 <br>
                 导入方式：通过Excel表格方式导入，包含四项数据：用户唯一标识（学号）、姓名、性别(男、女)、部门（院系）
                 <br>
-                导入权限：校级可以批量导入数据，院系也可以导入数据（权限范围仅限本院系）
+                导入权限：机构(校级)可以批量导入数据，部门(院系)也可以导入数据（权限范围仅限本院系）
                 <br>
-                重复导入：用户标识(学号/职工号)为唯一的标识，新的数据将覆盖原有数据
+                重复导入：用户标识(学号/职工号/邮箱)为唯一的标识，新的数据将覆盖原有数据
             </blockquote>
 
 
@@ -45,7 +45,7 @@
             <fieldset class="layui-elem-field layui-field-title site-title">
                 <legend><a name="default"> 查询结果总数：{$usr_count}人</a></legend>
             </fieldset>
-            <xblock><button class="layui-btn layui-btn-danger" onclick="member_add('批量导入用户','/admin/whitelist/memberimport.html','600','500')"><i class="layui-icon">&#xe601;</i>批量导入</button><button class="layui-btn" onclick="member_add('添加用户','/admin/whitelist/memberadd.html','600','500')"><i class="layui-icon">&#xe608;</i>单个添加</button><span class="x-right" style="line-height:40px">仅显示前200条数据</span></xblock>
+            <xblock><button class="layui-btn layui-btn-danger" onclick="member_add('批量导入用户','memberimport.html','600','500')"><i class="layui-icon">&#xe601;</i>批量导入</button><button class="layui-btn" onclick="member_add('添加用户','memberadd.html','600','500')"><i class="layui-icon">&#xe608;</i>单个添加</button><span class="x-right" style="line-height:40px">仅显示前200条数据</span></xblock>
             <table class="layui-table">
                 <thead>
                 <tr>
@@ -114,7 +114,8 @@
 <script>
     /*用户-添加*/
     function member_add(title,url,w,h){
-        x_admin_show(title,url,w,h);
+        window.location.href = url;
+        //x_admin_show(title,url,w,h);
     }
     /*用户-查看*/
     function member_show(title,url,id,w,h){
@@ -133,8 +134,8 @@
             //发异步删除数据
             
             layer.msg('正在删除!',{icon:1,time:1000});
-            console.log('/admin/whitelist/index/del/'+url)
-            window.location.href = '/admin/whitelist/index/del/'+url;    
+
+            window.location.href = 'del/useID/'+url;
         });
     }
 
