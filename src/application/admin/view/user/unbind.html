@@ -11,6 +11,8 @@
                 <br>
                 解绑权限说明：部门管理员可以解绑本部门白名单内的成员。
                 <br>
+                绑定数量说明：绑定数可能会超过白名单人数，但是统计、下载数据时以白名单为准。不在白名单内绑定的人员数据不统计。
+                <br>
             </blockquote>
 
            <blockquote class="layui-elem-quote">
@@ -18,7 +20,7 @@
             </blockquote>
 
             <fieldset class="layui-elem-field layui-field-title site-title">
-                
+                 <legend><a name="default"> 总绑定人数：{$usr_count}人</a></legend>
             </fieldset>
            
             <form class="layui-form xbs" method="post" action="{:url('admin/user/unbind')}" >
@@ -26,6 +28,9 @@
                     <div class="layui-form-item" style="display: inline-block;">
                         <div class="layui-input-inline">
                             <input type="text" name="userid"  placeholder="请输入用户标识" autocomplete="off" class="layui-input">
+                        </div>
+                        <div class="layui-input-inline">
+                            <input type="text" name="name"  placeholder="请输入姓名" autocomplete="off" class="layui-input">
                         </div>
                         <div class="layui-input-inline" style="width:80px">
                             <button class="layui-btn"  lay-submit="" lay-filter="sreach"><i class="layui-icon">&#xe615;</i></button>
@@ -37,6 +42,9 @@
             <table class="layui-table">
                 <thead>
                 <tr>
+                     <th>
+                        序号
+                    </th>
                     
                     <th>
                         用户标识
@@ -64,6 +72,7 @@
                 <tbody>
                 {volist name="$user_list" id="vo" key="k"}
                 <tr>
+                    <td>{$k} </td>
                     <td>{$vo.username} </td>
                     <td>{$vo.userID} </td>
                     <td>{$vo.name} </td>

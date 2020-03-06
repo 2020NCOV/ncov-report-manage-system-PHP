@@ -47,7 +47,7 @@ class Whitelist extends Base
                 //想要的字段
                 ->field('o.id,o.userID,o.name,o.userID,o.gender,o.sub1_department_id,o.add_datetime,o.last_update_time,o.add_remark,d.dep_name')
                 ->where($map)//必须本机构的部门
-                ->order('userID')
+                ->order('o.sub1_department_id')
                 ->select();
 
             $usr_count = count($res_white_list);
@@ -58,8 +58,8 @@ class Whitelist extends Base
                 //想要的字段
                 ->field('o.userID,o.name,o.userID,o.gender,o.sub1_department_id,o.add_datetime,o.last_update_time,o.add_remark,d.dep_name')
                 ->where($map)//必须本机构的部门
-                ->order('userID')
-                ->limit(200)
+                ->order('o.sub1_department_id,o.userID')
+                ->limit(500)
                 ->select();
 
 

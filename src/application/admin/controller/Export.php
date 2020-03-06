@@ -31,7 +31,7 @@ class Export extends Base
             }
             $res_org = Db::table('org_dep')
                   ->where($map_dep)
-                  ->order('dep_name')
+                  ->order('id')
                   ->select();
             
             //echo Db::getLastSql();
@@ -83,7 +83,7 @@ class Export extends Base
             $objWriter = \PHPExcel_IOFactory::createWriter($objExcel, 'Excel2007');
             $objActSheet = $objExcel->getActiveSheet();
             $key = ord("A");
-            if($org_template_code == "company_df"){
+            if($org_template_code == "company_df" || $org_template_code == "company"){
                   $dep_id = Request::instance()->param('id');
                     //如果是部门管理员，则dep_id 必须为本部门的dep_id
                   
@@ -283,7 +283,7 @@ class Export extends Base
         	}
           
           
-            if($org_template_code == "school_df"){
+            if($org_template_code == "school_df" || $org_template_code == "default"){
                   $dep_id = Request::instance()->param('id');
                     //如果是部门管理员，则dep_id 必须为本部门的dep_id
                   
@@ -554,7 +554,7 @@ class Export extends Base
             $key = ord("A");
             //echo $org_template_code;
             //return;
-            if($org_template_code == "company_df"){
+            if($org_template_code == "company_df" || $org_template_code == "company"){
                   $dep_id = Request::instance()->param('id');
                     //如果是部门管理员，则dep_id 必须为本部门的dep_id
                   
@@ -754,7 +754,7 @@ class Export extends Base
         	}
           
           
-            if($org_template_code == "school_df"){
+            if($org_template_code == "school_df" ||$org_template_code == "default"){
                   $dep_id = Request::instance()->param('id');
                     //如果是部门管理员，则dep_id 必须为本部门的dep_id
                   

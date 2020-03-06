@@ -41,8 +41,10 @@ class User extends Base
       
        
        $userid = Request::instance()->post('userid');
+        $name = Request::instance()->post('name');
        $unbind = Request::instance()->post('unbind');
        $map_unbind['username'] = ['like','%'.$userid.'%'];
+        $map_unbind['name'] = ['like','%'.$name.'%'];
        $map_unbind['org_id'] = $org_id;
        $map_unbind['isbind'] = 1;
        $res_org_unbind = Db::table('wx_mp_bind_info')
@@ -51,15 +53,16 @@ class User extends Base
       		//想要的字段
       		->field('u.username,u.bind_date,w.name,w.userID,w.phone_num')
             ->where($map_unbind)
-            ->limit(100)
+            ->limit(1000)
             ->select();
-      
+       $user_count = count($res_org_unbind);
        if(count($res_org_unbind)>0){
            $user_list = $res_org_unbind;
           
        }
       
        $this->assign("user_list", $res_org_unbind);
+       $this->assign("usr_count", $user_count);
        $this->assign("msg", $msg);
       
        return  $this->fetch();

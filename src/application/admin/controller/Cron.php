@@ -68,6 +68,9 @@ class Cron extends Controller{
                     }
                  }
              }
+     echo date('Y-m-d H:i:m');
+     echo"OK";
+     
    }
    
 }
