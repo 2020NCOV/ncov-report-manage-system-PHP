@@ -1,5 +1,5 @@
 <?php
-namespace app\admin\controller;
+namespace app\superadmin2020\controller;
 use think\Request;
 use think\Db;
 use think\Session;
@@ -8,107 +8,15 @@ class Index extends Base
 {
     public function index()
     {
-
-        $today = date("Y-m-d");
-
-        $total_count =0;
-
-        if (2 == Session::get('role') || 3 == Session::get('role')) {
-            $admin_uid = Session::get('userid');  //用户id
-            $admin_role = Session::get('role'); //  管理员角色
-            $org_id = Session::get('org_id'); //   机构id
-            $org_name = Session::get('org_name'); // 机构名称
-            $dep_id = Session::get('dep_id'); // 部门ID
-
-            //获取总人数
-            $map_total_count['org_id']= $org_id;
-            if($admin_role ==3)
-                $map_total_count['sub1_department_id']= $dep_id;
-            $total_count = Db::table('org_whitelist')
-                ->where($map_total_count)
-                ->count();
-            $total_unreport_count=0;
-            $total_report_count=0;
-            $total_report_ratio = 0;
-
-            //统计各部门上报率
-            $map_dep_count['org_id']= $org_id;
-            $map_dep_count['is_del']= 0;
-            $map_dep_count['level']= 1;
-            if($admin_role ==3)
-                $map_dep_count['id']= $dep_id;
-            $dep_res = Db::table('org_dep')
-                ->where($map_dep_count)
-                ->select();
-
-            if(count($dep_res)>0){
-                foreach ($dep_res as $key => $list) {
-                    //统计各部门总人数
-                    $count = Db::table('org_whitelist')
-                        ->where('sub1_department_id' ,'=',$list['id'])
-                        ->count();
-                    $dep_res[$key]['total']=$count;
-
-                    //防止除数为0
-                    $count1 =$count;
-                    if($count1 == 0)
-                        $count1 = 0.00000001;
-                    $dep_res[$key]['total_sum']=$count1;
-
-                    //统计今日上报人数
-                    $count = Db::table('org_whitelist')
-                        ->where('sub1_department_id' ,'=',$list['id'])
-                        ->where('report_date' ,'like','%'.$today.'%')
-                        ->count();
-                    $dep_res[$key]['today']=$count;
-
-                    //防止除数为0
-                    $count1 =$count;
-                    if($count == 0)
-                        $count1 = 0.00000001;
-                    $dep_res[$key]['today_sum']=$count1;
-
-                    //统计上报总人数和未上报人数
-                    $total_report_count = $total_report_count +$dep_res[$key]['today'];
-
-
-                    //统计上报率
-                    $dep_res[$key]['unreport']=$dep_res[$key]['total']-$dep_res[$key]['today'];
-                    $total_unreport_count = $total_unreport_count+$dep_res[$key]['unreport'];
-
-                    $total_count1 = $total_count;
-                    if($total_count ==0)
-                        $total_count1=0.0001;
-                    $total_report_ratio = sprintf("%.0f",sprintf("%f", $total_report_count/$total_count1)*100)."%";
-
-                    $dep_res[$key]['ratio']=sprintf("%.0f",sprintf("%f", $dep_res[$key]['today_sum']/$dep_res[$key]['total_sum'])*100)."%";
-
-                }
-            }
-
-            //var_dump($dep_res);
-
-
-        }
-
-
-        $this->assign("total_count", $total_count);//总人数
-        $this->assign("total_unreport_count", $total_unreport_count);//总人数
-        $this->assign("total_report_count", $total_report_count);//总人数
-        $this->assign("total_report_ratio", $total_report_ratio);//总人数
-        $this->assign("dep_list", $dep_res);//总人数
-
-        return  $this->fetch();
+       return  $this->fetch();
     }
   
   
     public function index2()
     {
-
-        //***总人数
-
-
-
+        //***全日制总数
+        $type_count_num_str1 ="SELECT count(*) as num FROM `a2020_student` WHERE  `study_type` = '全日制'";
+        $type_count_num1 = Db::query($type_count_num_str1);
         //var_dump($type_count_num1[0]['num']);
 
         //***当前在北京市总数
@@ -446,7 +354,7 @@ class Index extends Base
         if($password1 != $password2){
             $this->error("密码必须为字母和数字组合,长度不能小于8位,两次输入要一致");
         }
-        if(strlen($password1)<8 ){
+        if(strlen($password1) <8 ){
             $this->error("密码必须为字母和数字组合,长度不能小于8位,两次输入要一致");
         }
 
@@ -477,7 +385,7 @@ class Index extends Base
             $service = new \app\admin\service\Log();
             $service->write("2","修改密码成功");
             
-            $this->success("密码更新成功,请重新登录!",url('admin/login/index'));
+            $this->success("密码更新成功,请重新登录!",url('superadmin2020/login/index'));
         }else{
             $service = new \app\admin\service\Log();
             $service->write("2","修改密码失败");

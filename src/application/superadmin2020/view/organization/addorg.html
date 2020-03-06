@@ -1,0 +1,142 @@
+{include file="public/header" /}
+<!-- 中部开始 -->
+<div class="wrapper">
+    {include file="public/left" /}
+    <!-- 右侧主体开始 -->
+    <div class="page-content">
+        <div class="content">
+            {$msg}
+            <form class="layui-form" method="post" >
+                <input type="hidden"   name="add" value="1">
+                <div class="layui-form-item">
+                    <label for="corpname" class="layui-form-label">
+                        <span class="x-red">*</span>简写
+                    </label>
+                    <div class="layui-input-inline">
+                        <input type="text" id="corpname" name="corpname" required="" lay-verify="nikename"
+                        autocomplete="off" class="layui-input">
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">
+                        <span class="x-red"></span>用于小程序端显示
+                    </div>
+                </div>
+              
+                <div class="layui-form-item">
+                    <label for="corpname_full" class="layui-form-label">
+                        <span class="x-red">*</span>公司全称
+                    </label>
+                    <div class="layui-input-inline">
+                        <input type="text" id="corpname_full" name="corpname_full" required="" lay-verify="nikename"
+                        autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label for="corp_code" class="layui-form-label">
+                        <span class="x-red">*</span>企业编码
+                    </label>
+                    <div class="layui-input-inline">
+                        <input type="text" id="corp_code" name="corp_code" required="" lay-verify="nikename"
+                               autocomplete="off" class="layui-input">
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">
+                        <span class="x-red"></span>不少于8位的编码8位数字+4位字符(如1021pku)
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label for="type_corpname" class="layui-form-label">
+                        <span class="x-red">*</span>机构类型
+                    </label>
+                    <div class="layui-input-inline">
+                        <input type="text" id="type_corpname" name="type_corpname" required="" lay-verify="nikename"
+                               autocomplete="off" class="layui-input">
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">
+                        <span class="x-red"></span>用于小程序端显示(如,学校\公司\单位等)
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label for="type_username" class="layui-form-label">
+                        <span class="x-red">*</span>标识码
+                    </label>
+                    <div class="layui-input-inline">
+                        <input type="text" id="type_username" name="type_username" required="" lay-verify="nikename"
+                               autocomplete="off" class="layui-input">
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">
+                        <span class="x-red"></span>用于小程序端显示(如学号/邮箱等)
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label for="adminname" class="layui-form-label">
+                        <span class="x-red">*</span>管理员姓名
+                    </label>
+                    <div class="layui-input-inline">
+                        <input type="text" id="adminname" name="adminname" required="" lay-verify="nikename"
+                               autocomplete="off" class="layui-input">
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">
+                        <span class="x-red"></span>机构管理员姓名
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label for="username" class="layui-form-label">
+                        <span class="x-red">*</span>管理员手机号码
+                    </label>
+                    <div class="layui-input-inline">
+                        <input type="text" id="username" name="username" required="" lay-verify="nikename"
+                               autocomplete="off" class="layui-input">
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">
+                        <span class="x-red"></span>管理员用户名和密码一致
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label   class="layui-form-label">
+                        <span class="x-red">*</span>请选择
+                    </label>
+
+                    <div class="layui-input-inline">
+                        <select name="template_code">
+                            <option value ='0'>请选择模板</option>
+                            {volist name="$tem_list" id="vo" key="k"}
+                            <option value = '{$vo.code}'>{$vo.name}</option>
+                            {/volist}
+                        </select>
+
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label for="remark" class="layui-form-label">
+                        <span class="x-red">*</span>备注
+                    </label>
+                    <div class="layui-input-inline">
+                        <input type="text" id="remark" name="remark" required="" lay-verify="nikename"
+                               autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+              
+
+                <div class="layui-form-item">
+                    <label   class="layui-form-label">
+                    </label>
+                    <button  class="layui-btn" lay-filter="add" lay-submit="">
+                        确定
+                    </button>
+                </div>
+            </form>
+          
+          
+          
+        </div>
+    </div>
+    <!-- 右侧主体结束 -->
+</div>
+<!-- 中部结束 -->
+<script>
+
+        
+ </script>
+
+{include file="public/footer" /}
+
+

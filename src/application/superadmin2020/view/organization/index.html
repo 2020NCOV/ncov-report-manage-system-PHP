@@ -1,0 +1,118 @@
+{include file="public/header" /}
+<!-- 中部开始 -->
+<div class="wrapper">
+    {include file="public/left" /}
+    <!-- 右侧主体开始 -->
+    <div class="page-content">
+        <div class="content">
+            <!-- 右侧内容框架，更改从这里开始 -->
+            <blockquote class="layui-elem-quote">
+                单位简称：用于小程序端显示的名称。
+                <br>
+                模板：可以后台配置单位使用的模板。
+                <br>
+                单位编码：不少于10位的编码5位数字+5位字符(通常为学校简写如pku)
+                <br>
+                单位类型：此字段在小程序端有显示
+                <br>
+                标识码：此字段在小程序端绑定时显示,可以为(学号\职工号\邮箱等内容)
+                <br>
+                上报数据存取：每个机构单独存放到一个表中,更换模板后,原来的数据表需要重命名,并做好备份
+            </blockquote>
+
+
+
+            <fieldset class="layui-elem-field layui-field-title site-title">
+                <legend><a name="default"> 已开通总数：{$org_count}</a></legend>
+            </fieldset>
+            <table class="layui-table">
+                <thead>
+                <tr>
+                    <th>
+                        序号
+                    </th>
+                    <th>
+                        单位简称*
+                    </th>
+                    <th>
+                        单位全名
+                    </th>
+                    <th>
+                        模板
+                    </th>
+                    <th>
+                        单位编码
+                    </th>
+                    <th>
+                        类型*
+                    </th>
+                    <th>
+                        标识码*
+                    </th>
+                    <th>
+                        创建时间
+                    </th>
+                    <th>
+                        二维码
+                    </th>
+                    <th>
+                        操作
+                    </th>
+
+                </tr>
+                </thead>
+                <tbody>
+                {volist name="$org_list" id="vo" key="k"}
+                <tr>
+                    <td>{$k}</td>
+                    <td><u style="cursor:pointer" onclick="member_show('{$vo.corpname}','get_image/code/','{$vo.corp_code}','500','600')">
+                        {$vo.corpname}
+                    </u></td>
+                    <td>{$vo.corpname_full}</td>
+                    <td>{$vo.template_code}</td>
+                    <td>{$vo.corp_code}</td>
+                    <td>{$vo.type_corpname}</td>
+                    <td>{$vo.type_username}</td>
+                    <td>{$vo.add_date}</td>
+                    <td><u style="cursor:pointer" onclick="member_show('{$vo.corpname}','get_image/code/','{$vo.corp_code}','500','600')">
+                        {$vo.corpname}
+                    </u>
+
+                    </td>
+
+                    <td>
+                        <a title="修改" href="javascript:;" onclick="member_edit(this,'{$vo.id}')"
+                           style="text-decoration:none">
+                            <i class="layui-icon">&#xe631;</i>修改
+                        </a>
+
+
+                    </td>
+                </tr>
+                {/volist}
+                </tbody>
+            </table>
+            <!-- 右侧内容框架，更改从这里结束 -->
+
+
+            <!-- 右侧内容框架，更改从这里结束 -->
+        </div>
+    </div>
+    <!-- 右侧主体结束 -->
+</div>
+<!-- 中部结束 -->
+<script>
+
+    /*用户-查看*/
+    function member_show(title,url,id,w,h){
+        x_admin_show(title,url+id,w,h);
+    }
+    // 用户-编辑
+    function member_edit (title,url,id,w,h) {
+        window.location.href = 'edit/id/'+url;
+    }
+</script>
+
+{include file="public/footer" /}
+
+

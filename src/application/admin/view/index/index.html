@@ -5,13 +5,296 @@
     <!-- 右侧主体开始 -->
     <div class="page-content">
         <div class="content">
+            <blockquote class="layui-elem-quote">
+                统计功能预计3月7日开通!敬请期待!
+            </blockquote>
             <!-- 右侧内容框架，更改从这里开始 -->
-           
-           
-        
+            <fieldset class="layui-elem-field layui-field-title site-title">
+                <legend> 1.上报概况</legend>
+            </fieldset>
+            <table class="layui-table">
+                <thead>
+                <tr>
+                    <th>
+                        序号
+                    </th>
+                    <th>
+                        部门
+                    </th>
+                    <th>
+                        总人数
+                    </th>
+                    <th>
+                        今日上报
+                    </th>
+                    <th>
+                        今日未上报
+                    </th>
+                    <th>
+                        今日上报率
+                    </th>
+                    <th>
+                        较昨日比较有变化人数
+                    </th>
 
- 
-            
+                </tr>
+                </thead>
+                <tbody>
+                {volist name="$dep_list" id="vo" key="k"}
+                <tr>
+                    <td>{$k}</td>
+                    <td>{$vo.dep_name}</td>
+                    <td>{$vo.total}</td>
+                    <td>{$vo.today}</td>
+                    <td>{$vo.unreport}</td>
+                    <td {eq name="vo.ratio" value="100%"}style="background: #00a000;"{/eq} >{$vo.ratio}</td>
+                    <td></td>
+                </tr>
+                {/volist}
+                <tr>
+                    <td colspan="2">合计</td>
+                    <td>{$total_count}</td>
+                    <td>{$total_report_count}</td>
+                    <td>{$total_unreport_count}</td>
+                    <td {eq name="$total_report_ratio" value="100%"}style="background: #00a000;"{/eq} >{$total_report_ratio}</td>
+                    <td></td>
+                </tr>
+                </tbody>
+            </table>
+
+            <fieldset class="layui-elem-field layui-field-title site-title">
+                <legend> 2.疫情信息</legend>
+            </fieldset>
+            <table class="layui-table">
+                <thead>
+                <tr>
+                    <th style="width: 50px;">
+                        序号
+                    </th >
+                    <th >
+                        科目
+                    </th>
+                    <th style="width: 100px;">
+                        人数
+                    </th>
+                    <th style="width: 100px;">
+                        操作
+                    </th>
+
+
+                </tr>
+                </thead>
+                <tbody>
+
+                <tr>
+                    <td>2.1</td>
+                    <td>14日内来自或经过疫情较重(湖北)地区</td>
+                    <td> </td>
+                    <td> 查看详情</td>
+                </tr>
+                <tr>
+                    <td>2.2</td>
+                    <td>14日内密切接触人中有疑似或确诊病例</td>
+                    <td> </td>
+                    <td> 查看详情</td>
+                </tr>
+                <tr>
+                    <td>2.3</td>
+                    <td>发热、咳嗽、呼吸困难等疑似症状</td>
+                    <td> </td>
+                    <td> 查看详情</td>
+                </tr>
+                <tr>
+                    <td>2.4</td>
+                    <td>疑似病例</td>
+                    <td> </td>
+                    <td> 查看详情</td>
+                </tr>
+                <tr>
+                    <td>2.5</td>
+                    <td>医学隔离</td>
+                    <td> </td>
+                    <td> 查看详情</td>
+                </tr>
+                <tr>
+                    <td>2.6</td>
+                    <td>确诊病例</td>
+                    <td> </td>
+                    <td> 查看详情</td>
+                </tr>
+                </tbody>
+            </table>
+
+            <fieldset class="layui-elem-field layui-field-title site-title">
+                <legend> 3.人员分布信息</legend>
+            </fieldset>
+            <table class="layui-table">
+                <thead>
+                <tr>
+                    <th style="width: 50px;">
+                        序号
+                    </th>
+                    <th >
+                        科目
+                    </th>
+                    <th style="width: 100px;">
+                        人数
+                    </th>
+                    <th style="width: 100px;">
+                        操作
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>3.1</td>
+                    <td>在本地区总人数</td>
+                    <td> </td>
+                    <td> 查看详情</td>
+                </tr>
+                <tr>
+                    <td>3.2</td>
+                    <td>当日在疫情较重地区(湖北)人数</td>
+                    <td> </td>
+                    <td> 查看详情</td>
+                </tr>
+                <tr>
+                    <td>3.3</td>
+                    <td>在国内其他地区（非本地区，非湖北疫情较重地区）人数</td>
+                    <td> </td>
+                    <td> 查看详情</td>
+                </tr>
+                <tr>
+                    <td>3.4</td>
+                    <td>在境外（含港澳台地区）人数</td>
+                    <td> </td>
+                    <td> 查看详情</td>
+                </tr>
+
+                </tbody>
+            </table>
+
+            <fieldset class="layui-elem-field layui-field-title site-title">
+                <legend> 4.返回本地信息</legend>
+            </fieldset>
+            <table class="layui-table">
+                <thead>
+                <tr>
+                    <th style="width: 50px;">
+                        序号
+                    </th>
+                    <th >
+                        科目
+                    </th>
+                    <th style="width: 100px;">
+                        人数
+                    </th>
+                    <th style="width: 100px;">
+                        操作
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>4.1</td>
+                    <td>今日返回本地区总人数</td>
+                    <td> </td>
+                    <td> 查看详情</td>
+                </tr>
+                <tr>
+                    <td>4.2</td>
+                    <td>今日从疫情较重地区(湖北)返回总人数</td>
+                    <td> </td>
+                    <td> 查看详情</td>
+                </tr>
+                <tr>
+                    <td>4.3</td>
+                    <td>14日内从疫情较重地区(湖北)返回累计总人数</td>
+                    <td> </td>
+                    <td> 查看详情</td>
+                </tr>
+                <tr>
+                    <td>4.4</td>
+                    <td>疫情较重地区(湖北)返回累计总人数</td>
+                    <td> </td>
+                    <td> 查看详情</td>
+                </tr>
+
+                </tbody>
+
+            </table>
+
+            <fieldset class="layui-elem-field layui-field-title site-title">
+                <legend> 5.心理健康信息</legend>
+            </fieldset>
+            <table class="layui-table">
+                <thead>
+                <tr>
+                    <th style="width: 50px;">
+                        序号
+                    </th>
+                    <th >
+                        科目
+                    </th>
+                    <th style="width: 100px;">
+                        人数
+                    </th>
+                    <th style="width: 100px;">
+                        操作
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>5.1</td>
+                    <td>心理健康较差(有点差,非常糟)</td>
+                    <td> </td>
+                    <td> 查看详情</td>
+                </tr>
+                <tr>
+                    <td>5.2</td>
+                    <td>有心理需求(偶尔,很需要)</td>
+                    <td> </td>
+                    <td> 查看详情</td>
+                </tr>
+                <tr>
+                    <td>5.3</td>
+                    <td>有焦虑减压方面心理调适知识需求人数</td>
+                    <td> </td>
+                    <td> 查看详情</td>
+                </tr>
+                <tr>
+                    <td>5.4</td>
+                    <td>有情绪管理方面心理调适知识需求人数</td>
+                    <td> </td>
+                    <td> 查看详情</td>
+                </tr>
+                <tr>
+                    <td>5.5</td>
+                    <td>有学习成长方面心理调适知识需求人数</td>
+                    <td> </td>
+                    <td> 查看详情</td>
+                </tr>
+                <tr>
+                    <td>5.6</td>
+                    <td>有与家人相处方面心理调适知识需求人数</td>
+                    <td> </td>
+                    <td> 查看详情</td>
+                </tr>
+                <tr>
+                    <td>5.7</td>
+                    <td>有其他方面心理调适知识</td>
+                    <td> </td>
+                    <td> 查看详情</td>
+                </tr>
+
+                </tbody>
+
+            </table>
+
+
+
+
             <!-- 右侧内容框架，更改从这里结束 -->
         </div>
     </div>
