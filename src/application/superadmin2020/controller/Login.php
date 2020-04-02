@@ -34,7 +34,10 @@ class Login extends Controller{
         $secure_code="沧海猎人";
         //重置session
         $code = Request::instance()->post('code');
-        if($code){
+        if(!isset($_COOKIE['login_count'])){
+            cookie('login_count',0);
+        }
+        if($_COOKIE['login_count']>=3){
             if(!captcha_check($code)){
                 $this->error("验证码错误！",'login/index');
             }
