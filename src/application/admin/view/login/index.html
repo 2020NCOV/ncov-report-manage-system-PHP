@@ -1,9 +1,9 @@
 <!doctype html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title>疫情防控管理系统</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <title>疫情防控管理系统</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    
    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="__STATIC__/admin/css/font.css">
@@ -35,6 +35,18 @@
                   <input type="password" name="password" lay-verify="required" placeholder="请输入你的密码" autocomplete="off" class="layui-input">
                 </div>
             </div>
+            {if $verify}
+            <div>
+                <label class="login-title" for="password">验证码</label>
+                <p align="center" style="margin:10px auto 10px;"><img src="{:captcha_src()}" onclick="this.src='{:captcha_src()}'"/></p>
+                <div class="layui-form-item">
+                    <label class="layui-form-label login-form"><i class="iconfont">&#xe6a4;</i></label>
+                    <div class="layui-input-inline login-inline"> 
+                     <input type="input" name="code" class="layui-input" placeholder="请输入您的验证码" lay-verify="required" autocomplete="off">
+                    </div>
+                </div>
+            </div>
+            {/if}
             <div class="form-actions">
                 <button class="btn btn-warning pull-right" lay-submit lay-filter="login"  type="submit">登录</button> 
             </div>
@@ -42,7 +54,7 @@
         <div class="login-logo"><h1>请使用Chrome浏览器</h1></div>
     </div>
 
-	
+    
    
 </body>
 </html>
