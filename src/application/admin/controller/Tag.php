@@ -94,7 +94,7 @@ class Tag extends Base
             $org_name = Session::get('org_name'); // 机构名称
             $dep_id = Session::get('dep_id');
 
-            $add_tag_name = Request::instance()->post('add_tag_name');
+            $add_tag_name = trim(Request::instance()->post('add_tag_name'));
             $msg = "";
             if ($add_tag_name == 1) {
                 $tag_name = trim(Request::instance()->post('tag_name'));
@@ -151,7 +151,7 @@ class Tag extends Base
 
             $is_edit = Request::instance()->param('edit');
             $edit_tag_id = Request::instance()->param('id');
-            $edit_tag_name = Request::instance()->post('tag_name');
+            $edit_tag_name = trim(Request::instance()->post('tag_name'));
 
             //检测编辑数据
             if ($is_edit == 1) {

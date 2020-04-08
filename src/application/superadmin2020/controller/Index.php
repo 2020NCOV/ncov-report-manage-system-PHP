@@ -341,9 +341,9 @@ class Index extends Base
 
         $username = Session::get('username');
 
-        $oldpsswd = Request::instance()->post('old_passwd');
-        $password1 = Request::instance()->post('new_passwd1');
-        $password2 = Request::instance()->post('new_passwd2');
+        $oldpsswd = trim(Request::instance()->post('old_passwd'));
+        $password1 = trim(Request::instance()->post('new_passwd1'));
+        $password2 = trim(Request::instance()->post('new_passwd2'));
 
         if(preg_match('/^(?![0-9]+$)(?![a-zA-Z]+$)/', $password1) == 0){
             $this->error("密码必须为字母和数字组合,长度不能小于8位,两次输入要一致");   

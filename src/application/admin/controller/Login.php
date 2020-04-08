@@ -39,15 +39,15 @@ class Login extends Controller{
                 cookie('login_count',0);
             }
             if($_COOKIE['login_count']>=3){
-                $code = Request::instance()->post('code');
+                $code = trim(Request::instance()->post('code'));
                 if(!captcha_check($code)){
                     $this->error("验证码错误！",'login/index');
                 }
             }
         Session::clear();
         
-        $username = Request::instance()->post('username');
-        $password = Request::instance()->post('password');
+        $username = trim(Request::instance()->post('username'));
+        $password = trim(Request::instance()->post('password'));
         $md5password = md5($secure_code.md5($password));
         $map['username']=$username;
         $map['password']=$md5password;
