@@ -106,7 +106,7 @@ class Department extends Base
 
             $is_edit = Request::instance()->param('edit');
             $edit_dep_id = Request::instance()->param('id');
-            $edit_dep_name = Request::instance()->post('dep_name');
+            $edit_dep_name = trim(Request::instance()->post('dep_name'));
 
             //检测编辑数据
             if ($is_edit == 1) {

@@ -40,9 +40,9 @@ class User extends Base
        }
       
        
-       $userid = Request::instance()->post('userid');
-        $name = Request::instance()->post('name');
-       $unbind = Request::instance()->post('unbind');
+       $userid = trim(Request::instance()->post('userid'));
+        $name = trim(Request::instance()->post('name'));
+       $unbind = trim(Request::instance()->post('unbind'));
        $map_unbind['username'] = ['like','%'.$userid.'%'];
         $map_unbind['name'] = ['like','%'.$name.'%'];
        $map_unbind['org_id'] = $org_id;

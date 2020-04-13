@@ -15,9 +15,9 @@ class Today extends Base
        $dep_id = Session::get('dep_id'); // 机构名称
 
 
-        $userid = Request::instance()->post('userid');
-        $name = Request::instance()->post('name');
-        $department_id = Request::instance()->post('department');
+        $userid = trim(Request::instance()->post('userid'));
+        $name = trim(Request::instance()->post('name'));
+        $department_id = trim(Request::instance()->post('department'));
 
 
        if( 2 ==Session::get('role') || 3 ==Session::get('role')){

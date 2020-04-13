@@ -16,11 +16,9 @@ class Administrator extends Base
             $org_name = Session::get('org_name'); // 机构名称
             $dep_id = Session::get('dep_id'); // 机构名称
 
-            $userid = Request::instance()->post('username');
-            $name = Request::instance()->post('name');
-            $department_id = Request::instance()->post('department');
-
-
+            $userid = trim(Request::instance()->post('username'));
+            $name = trim(Request::instance()->post('name'));
+            $department_id = trim(Request::instance()->post('department'));
             $map_admin['a.org_id'] = $org_id;
 
             $map_admin['a.is_del'] = 0;
@@ -82,13 +80,12 @@ class Administrator extends Base
             $org_name = Session::get('org_name'); // 机构名称
             $dep_id = Session::get('dep_id'); // 部门名称
 
-            $add = Request::instance()->post('add');
-
+            $add = trim(Request::instance()->post('add'));
             if ($add == 1) {
-                $username = Request::instance()->post('user_name');
-                $name = Request::instance()->post('name');
-                $passwd = Request::instance()->post('passwd');
-                $department = Request::instance()->post('department');
+                $username = trim(Request::instance()->post('user_name'));
+                $name = trim(Request::instance()->post('name'));
+                $passwd = trim(Request::instance()->post('passwd'));
+                $department = trim(Request::instance()->post('department'));
 
                 //echo $name."-";echo $add."-";echo $username."-"; echo $name."-";echo $passwd."-"; echo $department;
 
@@ -199,9 +196,9 @@ class Administrator extends Base
             $dep_id = Session::get('dep_id'); // 机构名称
 
 
-            $userid = Request::instance()->post('userid');
-            $name = Request::instance()->post('name');
-            $department_id = Request::instance()->post('department');
+            $userid = trim(Request::instance()->post('userid'));
+            $name = trim(Request::instance()->post('name'));
+            $department_id = trim(Request::instance()->post('department'));
             $del_id = Request::instance()->param('id');
 
             $admin_res = Db::table('admin_user')
@@ -251,7 +248,7 @@ class Administrator extends Base
 
             $name = trim(Request::instance()->post('name'));
             $passwd = trim(Request::instance()->post('passwd'));
-            $department = Request::instance()->post('department');
+            $department = trim(Request::instance()->post('department'));
 
 
             if (3 == Session::get('role')) {//本部门只能添加本部门的数据

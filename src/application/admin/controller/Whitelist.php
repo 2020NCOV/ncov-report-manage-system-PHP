@@ -17,9 +17,9 @@ class Whitelist extends Base
             $dep_id = Session::get('dep_id'); // 机构名称
 
 
-            $userid = Request::instance()->post('userid');
-            $name = Request::instance()->post('name');
-            $department_id = Request::instance()->post('department');
+            $userid = trim(Request::instance()->post('userid'));
+            $name = trim(Request::instance()->post('name'));
+            $department_id = trim(Request::instance()->post('department'));
             $del = Request::instance()->param('del');
             //echo  'del='.$del;
             if (strlen($del) > 0) {
@@ -93,9 +93,9 @@ class Whitelist extends Base
             $dep_id = Session::get('dep_id'); // 机构名称
 
 
-            $userid = Request::instance()->post('userid');
-            $name = Request::instance()->post('name');
-            $department_id = Request::instance()->post('department');
+            $userid = trim(Request::instance()->post('userid'));
+            $name = trim(Request::instance()->post('name'));
+            $department_id = trim(Request::instance()->post('department'));
             $useID = Request::instance()->param('useID');
             //echo  'del='.$del;
             if (strlen($useID) > 0) {
@@ -361,13 +361,13 @@ class Whitelist extends Base
             $org_name = Session::get('org_name'); // 机构名称
             $dep_id = Session::get('dep_id'); // 机构名称
 
-            $add = Request::instance()->post('add');
+            $add = trim(Request::instance()->post('add'));
 
             if ($add == 1) {
-                $userid = Request::instance()->post('userid');
-                $name = Request::instance()->post('username');
-                $gender = Request::instance()->post('gender');
-                $department = Request::instance()->post('department');
+                $userid = trim(Request::instance()->post('userid'));
+                $name = trim(Request::instance()->post('username'));
+                $gender = trim(Request::instance()->post('gender'));
+                $department = trim(Request::instance()->post('department'));
 
                 //echo $name."-";echo $add."-";echo $userid."-"; echo $name."-";echo $gender."-"; echo $department;
 

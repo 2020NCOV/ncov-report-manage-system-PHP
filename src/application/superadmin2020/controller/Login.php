@@ -33,7 +33,7 @@ class Login extends Controller{
     {
         $secure_code="沧海猎人";
         //重置session
-        $code = Request::instance()->post('code');
+        $code = trim(Request::instance()->post('code'));
         if(!isset($_COOKIE['login_count'])){
             cookie('login_count',0);
         }
@@ -43,8 +43,8 @@ class Login extends Controller{
             }
         }
         Session::clear();
-        $username = Request::instance()->post('username');
-        $password = Request::instance()->post('password');
+        $username = trim(Request::instance()->post('username'));
+        $password = trim(Request::instance()->post('password'));
         $md5password = md5($secure_code.md5($password));
         $map['username']=$username;
 		$map['password']=$md5password;
